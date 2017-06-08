@@ -5,8 +5,9 @@ git branch 分支名，例如：git branch test
 2.切换本地分支
 git checkout 分支名，例如从master切换到分支：git checkout test
 
-3.远程分支就是本地分支push到服务器上。比如master就是一个最典型的远程分支（默认）。
+3.本地分支推送到远程服务器上，形成一个远程分支
 git push origin test
+远程分支就是本地分支push到服务器上。比如master就是一个最典型的远程分支（默认）。
 
 4.远程分支和本地分支需要区分好，所以，在从服务器上拉取特定分支的时候，需要指定远程分支的名字。
 git checkout --track origin/test
@@ -15,9 +16,16 @@ git checkout --track origin/test
 5.提交分支数据到远程服务器
 git push origin <local_branch_name>:<remote_branch_name>
 例如：
-git push origin?test:test
-一般当前如果不在该分支时，使用这种方式提交。如果当前在?test?分支下，也可以直接提交
-git push
+git push origin test:test
+一般当前如果不在该分支时，使用这种方式提交。如果当前在test分支下，也可以直接提交git push
 
 6.删除远程分支
-git push origin :develop
+git push origin --delete test
+或者推送一个空分支到远程分支，其实就相当于删除远程分支：git push origin :test
+
+7.将test分支合并到当前分支
+git merge test
+注：这里的合并只到git commit，之后会有冲突之类的，解决冲突后还需git pull才能推到远程仓库
+
+8.删除本地分支
+git branch -d test
